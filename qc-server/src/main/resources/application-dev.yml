@@ -1,0 +1,126 @@
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:mysql://localhost:3306/qc?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:p6spy:mysql://39.106.108.190:3306/qc?useUnicode=true&characterEncoding=UTF8&useSSL=false&rewriteBatchedStatements=true
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    password: Lzxs@123
+    #    password: cdicdi
+    #    url: jdbc:mysql://qxinhui.rwlb.rds.aliyuncs.com:3306/qc?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    #    username: qc
+    #    password: Qcdev@2019
+  #    password: root@2019
+
+  redis:
+    port: 6379
+#    host: localhost
+#    password: 123456
+    database: 1
+    lettuce:
+      pool:
+        max-idle: 500
+        min-idle: 0
+        max-active: 100
+        max-wait: -1ms
+    timeout: 1s
+    host: 47.95.206.212
+    password: Lzxs@123
+  cache:
+      redis:
+        use-key-prefix: true
+        time-to-live: 60s
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 500
+          batch_versioned_data: true
+      order_inserts: true
+      order_updates: true
+      enable_lazy_load_no_trans: true
+
+logging:
+  config: classpath:logback-dev.xml
+user:
+  defaultAvatars:
+    - https://face-images.oss-cn-beijing.aliyuncs.com/%e5%a4%b4%e5%83%8f%e9%a3%8e%e6%99%af.png
+    - https://face-images.oss-cn-beijing.aliyuncs.com/%e5%a4%b4%e5%83%8f%e9%a3%8e%e6%99%af.png
+    - https://face-images.oss-cn-beijing.aliyuncs.com/%e5%a4%b4%e5%83%8f%e9%a3%8e%e6%99%af.png
+    - https://face-images.oss-cn-beijing.aliyuncs.com/%e5%a4%b4%e5%83%8f%e9%a3%8e%e6%99%af.png
+
+tlsSig:
+  admin: admin
+  apkAppId: 1400203105
+  pubStr: |
+    -----BEGIN PUBLIC KEY-----
+    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6SgnuAuN+H/qiyqU/9gUUEPTS81h
+    4rHkTNAJ/qwlPvpKXGdxH7prxGEUHTO2nSjDlm9O13rCL4SuVfmSzeCzXA==
+    -----END PUBLIC KEY-----
+  privStr: |
+    -----BEGIN PRIVATE KEY-----
+    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgR4Bvwh/e6LIcGeXO
+    sVD4AUMqPBYoYNtwaf15qnWIw6GhRANCAATpKCe4C434f+qLKpT/2BRQQ9NLzWHi
+    seRM0An+rCU++kpcZ3EfumvEYRQdM7adKMOWb07XesIvhK5V+ZLN4LNc
+    -----END PRIVATE KEY-----
+  registTlsUserUrl: https://console.tim.qq.com/v4/im_open_login_svc/account_import
+  modifyTlsUserUrl: https://console.tim.qq.com/v4/profile/portrait_set
+WeChat:
+  loginUrl: https://api.weixin.qq.com/sns/jscode2session
+  appid: wx8d04ad0492dab24d
+  secret: 0369106e59bf15d680c54418d4a59b48
+  grant_type: authorization_code
+Amap:
+  coordinateConvertUrl: https://restapi.amap.com/v3/assistant/coordinate/convert/
+  placeAroundUrl: https://restapi.amap.com/v3/place/around
+  amapKey: d05450f970ae57957f7d56b82cebdeaa
+
+dubbo:
+  provider:
+    version: 1.0
+  application:
+    name: feeds
+  scan:
+    base-packages: com.quantumtime.qc.service
+  protocol:
+    name: dubbo
+    prot: -1
+  registry:
+    address: zookeeper://39.105.126.121:2181?backup=47.93.52.158:2181,47.93.5.26:2181
+#    address: zookeeper://127.0.0.1:2181
+#    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+sensorsdata:
+  path: /opt/work/qc-api/data/access_log
+  flush: 1
+rocketmq:
+  accesskey-id: LTAI4FkRyuiscF9KBsjTFj5y
+  accesskey-secret: syUfwbVIx0wCkbWB2Yz70YoSWiXVrQ
+  namesrv: http://MQ_INST_1831423916153787_Bbb0WEdA.cn-beijing.mq-internal.aliyuncs.com:8080
+  # 生产者配置
+  producer:
+    group: GID-qc-api
+    qualify:
+      topic: qualify
+      tag: request
+    feeds:
+      topic: feeds
+      tag: request
+recommend:
+  url: http://59.110.230.6:8004/recommender/getfeedsandarticle
+aliyun:
+  vodCallbackUrl: https://dev.milinzone.com/feeds/video/callback
+
+#xxl_job配置
+
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://59.110.230.6:8080/xxl-job-admin
+    executor:
+      appname: qc-api
+      ip: ''
+      logpath: /data/applogs/xxl-job/qcServer
+      logretentiondays: -1
+      port: 4545
+

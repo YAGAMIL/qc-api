@@ -1,0 +1,83 @@
+server:
+  port: 8090
+spring:
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+    time-zone: UTC
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    show-sql: false
+    open-in-view: true
+
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 500
+          batch_versioned_data: true
+      order_inserts: true
+      order_updates: true
+      enable_lazy_load_no_trans: true
+management:
+  endpoints:
+    web:
+      exposure:
+       include: shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+aliyun:
+  accessKey: 'LTAI6zVmER30PVgh'
+  secret: 'Wr2lASJAe3TRTdjYCEerwxFb88ylBq'
+  smsRegisterCode: 'SMS_163625771'
+  smsLoginCode: 'SMS_163620885'
+  smsModifyPhoneCode: 'SMS_165108588'
+  signName: '秘邻'
+  pushIOSAppKey: '27646609'
+  pushAndroidAppKey: '27637042'
+  vodAccessKeyId: 'LTAI4Fr9DEwWjmsrPHUyQccP'
+  vodAccessKeySecret: 'pSxmMru1lkb5k7FTUduVwo6ddyb1xT'
+  vodRoleArn: 'acs:ram::1831423916153787:role/vodrole'
+  vodStsRegionId: 'cn-hangzhou'
+  vodRegionId: 'cn-shanghai'
+  vodWorkFlowId: '1da77b6b09e202a3166d9cc53ce1cb64'
+  vodCallbackKey: 'milinaskL234bsafd'
+http:
+  client:
+    connect-timeout: 3000
+    connection-request-timeout: 3000
+    socket-timeout: 4000
+video:
+  #首页总共推荐条数
+  portalMaxSize: 1000
+  #当前小区取几天
+  currentAddressDay: 365
+  #附近区域取几天
+  nearAddressDay: 365
+  #所在城市取几天
+  cityDay: 365
+  #公开的取几天
+  openDay: 365
+  #运营后台掺入比例
+  openRate: 0.2
+  #推荐结果缓存时间
+  recommendCacheTime: 3600
+  #运营后台标识
+  backendIdentity: slpo378234@sfd1298#
+  #视频状态需要检查的时间s
+  checkTimeout: 300
+gaode:
+  wsUrl: https://restapi.amap.com/v3/place/around
+  key: c1600938c831028ccdab2d720bc76a6e
+  types: 120000
+  radius: 5000
+  offset: 50
